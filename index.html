@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools — Pace Synergy</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --donker: #003a40;
+    --goud: #D4A866;
+    --goud-licht: #e8c98a;
+    --achtergrond: #F5F7FA;
+    --wit: #ffffff;
+    --tekst: #1a2e30;
+    --tekst-zacht: #4a6670;
+    --groen-sterk: #155724;
+    --geel-label: #856404;
+    --rood-label: #721c24;
+    --radius: 12px;
+    --radius-groot: 20px;
+  }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--achtergrond);
+    color: var(--tekst);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--donker);
+    padding: 72px 24px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(212,168,102,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(212,168,102,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--goud);
+    border: 1px solid rgba(212,168,102,0.4);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 800;
+    color: var(--wit);
+    line-height: 1.2;
+    max-width: 680px;
+    margin: 0 auto 20px;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 span {
+    color: var(--goud);
+  }
+  .hero p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.72);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ── TOOLS GRID ── */
+  .tools-sectie {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 72px 24px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .tool-kaart {
+    background: var(--wit);
+    border-radius: var(--radius-groot);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 12px rgba(0,58,64,0.07), 0 1px 3px rgba(0,58,64,0.05);
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+  .tool-kaart:hover {
+    box-shadow: 0 8px 32px rgba(0,58,64,0.13), 0 2px 8px rgba(0,58,64,0.08);
+    transform: translateY(-3px);
+  }
+
+  .kaart-visueel {
+    background: var(--donker);
+    padding: 40px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    min-height: 260px;
+  }
+  .kaart-visueel::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 80% at 30% 70%, rgba(212,168,102,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .tool-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--goud);
+    margin-bottom: 20px;
+  }
+  .tool-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--goud);
+    flex-shrink: 0;
+  }
+  .kaart-visueel h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--wit);
+    line-height: 1.2;
+    letter-spacing: -0.3px;
+    margin-bottom: 12px;
+  }
+  .kaart-visueel p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.68);
+    line-height: 1.7;
+    flex: 1;
+  }
+
+  /* grote decoratieve letters */
+  .visueel-deco {
+    position: absolute;
+    bottom: -16px;
+    right: -8px;
+    font-size: 120px;
+    font-weight: 800;
+    color: rgba(212,168,102,0.07);
+    line-height: 1;
+    pointer-events: none;
+    letter-spacing: -6px;
+    user-select: none;
+  }
+
+  .kaart-inhoud {
+    padding: 32px 32px 36px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .kaart-voor-wie {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--tekst-zacht);
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .kaart-voor-wie span {
+    color: var(--donker);
+  }
+
+  .features-lijst {
+    list-style: none;
+    margin-bottom: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    flex: 1;
+  }
+  .features-lijst li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--tekst);
+    line-height: 1.5;
+  }
+  .features-lijst li::before {
+    content: '';
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(0,58,64,0.08);
+    flex-shrink: 0;
+    margin-top: 1px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9l3.5 3.5L14 5.5' stroke='%23003a40' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+    background-size: 18px 18px;
+  }
+
+  .kaart-prijs-rij {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .prijs-label {
+    font-size: 13px;
+    color: var(--tekst-zacht);
+  }
+  .prijs-badge {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .prijs-badge.gratis { background: #d1fae5; color: #065f46; }
+  .prijs-badge.betaald { background: rgba(212,168,102,0.15); color: #7a5c1a; }
+
+  .kaart-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    text-align: center;
+  }
+  .kaart-cta.primair {
+    background: var(--donker);
+    color: var(--wit);
+  }
+  .kaart-cta.primair:hover {
+    background: #004d57;
+  }
+  .kaart-cta.goud {
+    background: var(--goud);
+    color: var(--donker);
+  }
+  .kaart-cta.goud:hover {
+    background: var(--goud-licht);
+  }
+  .kaart-cta svg {
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+  }
+  .kaart-cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  /* ── AFSLUITER ── */
+  .afsluiter {
+    background: var(--donker);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .afsluiter h2 {
+    font-size: clamp(22px, 4vw, 34px);
+    font-weight: 800;
+    color: var(--wit);
+    margin-bottom: 14px;
+    letter-spacing: -0.3px;
+  }
+  .afsluiter p {
+    font-size: 16px;
+    color: rgba(255,255,255,0.65);
+    max-width: 480px;
+    margin: 0 auto 32px;
+  }
+  .afsluiter a, .afsluiter-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: 'Nunito Sans', sans-serif;
+    background: transparent;
+    border: 1.5px solid rgba(212,168,102,0.5);
+    color: var(--goud);
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .afsluiter a:hover, .afsluiter-btn:hover {
+    background: rgba(212,168,102,0.08);
+    border-color: var(--goud);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .tools-sectie {
+      grid-template-columns: 1fr;
+      max-width: 520px;
+    }
+  }
+  @media (max-width: 480px) {
+    .kaart-visueel {
+      padding: 32px 24px 28px;
+      min-height: 220px;
+    }
+    .kaart-inhoud {
+      padding: 28px 24px 32px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-label">Pace Synergy Tools</div>
+  <h1>Inzicht dat leidt tot <span>betere samenwerking</span></h1>
+  <p>Drie tools om teamdynamiek te doorgronden — van een snelle signalering tot een volledige systemische analyse en begeleide feedbackgesprekken.</p>
+</section>
+
+<!-- TOOLS -->
+<section class="tools-sectie">
+
+  <!-- TOOL 1: Synergy Quickscan -->
+  <article class="tool-kaart">
+    <div class="kaart-visueel">
+      <div class="tool-badge"><span class="tool-badge-dot"></span>Gratis starten</div>
+      <h2>Synergy Quickscan</h2>
+      <p>Een eerste indicatie van wat er speelt in jouw team — in minder dan 5 minuten.</p>
+      <div class="visueel-deco">QS</div>
+    </div>
+    <div class="kaart-inhoud">
+      <div class="kaart-voor-wie">Voor wie · <span>Teamleiders, managers en HR-professionals</span></div>
+      <ul class="features-lijst">
+        <li>10 stellingen, direct resultaat</li>
+        <li>Signaleert patronen in teamdynamiek</li>
+        <li>Rapport met concrete eerste stap</li>
+        <li>Tweetalig: Nederlands en Engels</li>
+        <li>Ideale voorbereiding op het volledige assessment</li>
+      </ul>
+      <div class="kaart-prijs-rij">
+        <span class="prijs-label">Investering:</span>
+        <span class="prijs-badge gratis">Gratis</span>
+      </div>
+      <a class="kaart-cta goud" href="https://scan.s-pace.nl/#quickscan">
+        Start de Quickscan
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <!-- TOOL 2: Synergy Assessment -->
+  <article class="tool-kaart">
+    <div class="kaart-visueel">
+      <div class="tool-badge"><span class="tool-badge-dot"></span>Volledig teamrapport</div>
+      <h2>Synergy Assessment</h2>
+      <p>Systemische analyse van teamdynamiek — gedrag, patronen en concrete ontwikkelkansen.</p>
+      <div class="visueel-deco">SA</div>
+    </div>
+    <div class="kaart-inhoud">
+      <div class="kaart-voor-wie">Voor wie · <span>Managementteams, directieteams en scale-ups</span></div>
+      <ul class="features-lijst">
+        <li>61 stellingen over 10 domeinen</li>
+        <li>AI-gegenereerd teamrapport op maat</li>
+        <li>Patronen, risico's en ontwikkelkansen</li>
+        <li>Persoonlijke toelichting inbegrepen</li>
+        <li>Pakketten voor 2 tot 25+ personen</li>
+      </ul>
+      <div class="kaart-prijs-rij">
+        <span class="prijs-label">Vanaf:</span>
+        <span class="prijs-badge betaald">€ 1.299 excl. btw</span>
+      </div>
+      <a class="kaart-cta primair" href="https://scan.s-pace.nl/">
+        Bekijk het assessment
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </article>
+
+  <!-- TOOL 3: Feedback Tool -->
+  <article class="tool-kaart">
+    <div class="kaart-visueel">
+      <div class="tool-badge"><span class="tool-badge-dot"></span>Direct bruikbaar</div>
+      <h2>Feedback Tool</h2>
+      <p>Formuleer een feedbackgesprek dat écht iets verandert — met AI en de GEV-methode van Pace Synergy.</p>
+      <div class="visueel-deco">FT</div>
+    </div>
+    <div class="kaart-inhoud">
+      <div class="kaart-voor-wie">Voor wie · <span>Iedereen die een moeilijk gesprek wil voeren</span></div>
+      <ul class="features-lijst">
+        <li>Vijf vragen, één concreet feedbackvoorstel</li>
+        <li>Opgebouwd via Gedrag → Effect → Verlangen</li>
+        <li>Analyse van eigen emoties en aannames</li>
+        <li>Voorbereiding op het gesprek inclusief</li>
+        <li>Tweetalig: Nederlands en Engels</li>
+      </ul>
+      <div class="kaart-prijs-rij">
+        <span class="prijs-label">Investering:</span>
+        <span class="prijs-badge gratis">Gratis</span>
+      </div>
+      <a class="kaart-cta primair" href="https://feedback.s-pace.nl/">
+        Open de Feedback Tool
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </article>
+
+</section>
+
+<!-- AFSLUITER -->
+<section class="afsluiter">
+  <h2>Meer weten over begeleiding?</h2>
+  <p>Pace Synergy begeleidt teams om patronen te doorgronden en om te zetten in concreet gedrag en betere samenwerking.</p>
+  <a class="afsluiter-btn" href="https://s-pace.nl/diensten">
+    Bekijk alle diensten
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+</section>
+
+</body>
+</html>
