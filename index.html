@@ -69,8 +69,8 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 .bullets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin: 24px 0 32px; }
 .bullet-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--tekst-zacht); line-height: 1.5; }
 .bullet-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--goud); flex-shrink: 0; margin-top: 8px; }
-.callout { border-left: 3px solid var(--goud); border-radius: 0; padding: 16px 20px; background: #f9f6f0; font-size: 15px; font-style: italic; color: var(--tekst-zacht); line-height: 1.6; max-width: 680px; }
-.callout strong { color: var(--donker); font-style: normal; }
+.callout { border-left: 3px solid var(--goud); border-radius: 0; padding: 20px 24px; background: #f9f6f0; font-size: 18px; font-style: italic; color: var(--tekst-zacht); line-height: 1.6; max-width: 780px; }
+.callout strong { color: var(--donker); font-style: normal; font-size: 19px; }
 
 /* TOOLCARDS */
 .toolcards-sectie { background: var(--achtergrond); }
@@ -125,16 +125,16 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 .qs-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
 .qs-features li:last-child { border-bottom: none; }
 .qs-features li::before { content: '✓'; color: var(--goud); font-weight: 700; flex-shrink: 0; }
-.qs-form { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-groot); padding: 36px 32px; }
-.qs-form h3 { font-size: 18px; font-weight: 700; color: var(--wit); margin-bottom: 6px; }
-.qs-form p { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+.qs-form { background: var(--wit); border: 1.5px solid var(--goud); border-radius: var(--radius-groot); padding: 36px 32px; }
+.qs-form h3 { font-size: 18px; font-weight: 700; color: var(--donker); margin-bottom: 6px; }
+.qs-form p { font-size: 13px; color: var(--tekst-zacht); margin-bottom: 24px; }
 .form-groep { margin-bottom: 16px; }
-.form-groep label { display: block; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px; letter-spacing: 0.5px; }
-.form-groep input { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: var(--wit); font-size: 14px; font-family: inherit; transition: border-color 0.2s; outline: none; }
-.form-groep input::placeholder { color: rgba(255,255,255,0.35); }
+.form-groep label { display: block; font-size: 12px; font-weight: 700; color: var(--tekst-zacht); margin-bottom: 6px; letter-spacing: 0.5px; }
+.form-groep input { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid rgba(0,58,64,0.2); background: var(--achtergrond); color: var(--tekst); font-size: 14px; font-family: inherit; transition: border-color 0.2s; outline: none; }
+.form-groep input::placeholder { color: rgba(0,58,64,0.35); }
 .form-groep input:focus { border-color: var(--goud); }
 .form-rij { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.form-disclaimer { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 12px; line-height: 1.5; }
+.form-disclaimer { font-size: 11px; color: var(--tekst-zacht); margin-top: 12px; line-height: 1.5; }
 .form-success { display: none; text-align: center; padding: 20px; }
 .form-success h3 { color: var(--goud); margin-bottom: 8px; }
 .form-success p { color: rgba(255,255,255,0.7); font-size: 14px; }
@@ -220,7 +220,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 <section class="herkenning">
   <div class="herkenning-inner">
     <h2 class="sectie-titel">Sterke teams ontstaan niet alleen door talent</h2>
-    <p class="sectie-sub">Effectieve teams spreken zich uit, nemen eigenaarschap, communiceren helder en blijven constructief onder druk. Wanneer samenwerking onder druk staat, keren vaak dezelfde patronen terug:</p>
+    <p class="sectie-sub" style="max-width:100%;">Effectieve teams spreken zich uit, nemen eigenaarschap, communiceren helder en blijven constructief onder druk. Wanneer samenwerking onder druk staat, keren vaak dezelfde patronen terug:</p>
     <div class="bullets-grid">
       <div class="bullet-item">verantwoordelijkheden blijven onduidelijk</div>
       <div class="bullet-item">samenwerking kost onnodig energie en werkplezier</div>
