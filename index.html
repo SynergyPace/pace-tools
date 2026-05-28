@@ -3,363 +3,174 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tools — Pace Synergy</title>
+<title>Pace Synergy Tools | Inzicht in samenwerking en teamdynamiek</title>
+<meta name="description" content="Breng samenwerking, communicatie en teamdynamiek helder in kaart met de Quickscan, Synergy Assessment en Feedback Tool van Pace Synergy.">
 <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --donker: #003a40;
+  --goud: #D4A866;
+  --goud-licht: #e8c98a;
+  --achtergrond: #F5F7FA;
+  --wit: #ffffff;
+  --tekst: #1a2e30;
+  --tekst-zacht: #4a6670;
+  --radius: 12px;
+  --radius-groot: 20px;
+}
+body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); color: var(--tekst); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
-  :root {
-    --donker: #003a40;
-    --goud: #D4A866;
-    --goud-licht: #e8c98a;
-    --achtergrond: #F5F7FA;
-    --wit: #ffffff;
-    --tekst: #1a2e30;
-    --tekst-zacht: #4a6670;
-    --groen-sterk: #155724;
-    --geel-label: #856404;
-    --rood-label: #721c24;
-    --radius: 12px;
-    --radius-groot: 20px;
-  }
+/* NAV */
+.nav { background: var(--donker); padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 0 rgba(255,255,255,0.06); }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.nav-logo img { height: 34px; width: auto; }
+.nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); text-decoration: none; padding: 6px 11px; border-radius: 6px; transition: all 0.15s ease; white-space: nowrap; }
+.nav-links a:hover { color: #fff; background: rgba(255,255,255,0.07); }
+.nav-links a.actief { color: var(--goud); }
+.nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+.nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.8); border-radius: 2px; }
+.nav-mobiel { display: none; flex-direction: column; background: var(--donker); padding: 12px 24px 20px; border-top: 1px solid rgba(255,255,255,0.08); }
+.nav-mobiel a { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.nav-mobiel a:last-child { border-bottom: none; }
+.nav-mobiel a.actief { color: var(--goud); }
+.nav-mobiel.open { display: flex; }
+@media (max-width: 860px) { .nav-links { display: none; } .nav-toggle { display: flex; } }
 
-  body {
-    font-family: 'Nunito Sans', sans-serif;
-    background: var(--achtergrond);
-    color: var(--tekst);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+/* HERO */
+.hero { background: var(--donker); padding: 80px 24px 88px; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 50% at 20% 50%, rgba(212,168,102,0.07) 0%, transparent 70%), radial-gradient(ellipse 50% 60% at 80% 30%, rgba(212,168,102,0.05) 0%, transparent 70%); pointer-events: none; }
+.hero-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--goud); border: 1px solid rgba(212,168,102,0.4); padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+.hero h1 { font-size: clamp(28px, 5vw, 46px); font-weight: 800; color: var(--wit); line-height: 1.2; max-width: 680px; margin: 0 auto 20px; letter-spacing: -0.5px; }
+.hero h1 span { color: var(--goud); }
+.hero-sub { font-size: 16px; color: rgba(255,255,255,0.68); max-width: 560px; margin: 0 auto 12px; line-height: 1.7; }
+.hero-sub2 { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 500px; margin: 0 auto 32px; line-height: 1.6; }
+.cta-rij { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.btn-goud { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; background: var(--goud); color: var(--donker); text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; font-family: inherit; }
+.btn-goud:hover { background: var(--goud-licht); }
+.btn-outline-wit { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; background: transparent; color: rgba(255,255,255,0.85); border: 1.5px solid rgba(255,255,255,0.3); text-decoration: none; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.btn-outline-wit:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.5); }
+.btn-donker { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; background: var(--donker); color: var(--wit); text-decoration: none; border: none; cursor: pointer; transition: background 0.2s; font-family: inherit; }
+.btn-donker:hover { background: #004d57; }
+.btn-outline-donker { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; border-radius: 8px; font-size: 14px; font-weight: 700; background: transparent; color: var(--donker); border: 1.5px solid rgba(0,58,64,0.35); text-decoration: none; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+.btn-outline-donker:hover { background: rgba(0,58,64,0.05); }
+.btn svg { transition: transform 0.2s; flex-shrink: 0; }
+.btn-goud:hover svg, .btn-donker:hover svg, .btn-outline-donker:hover svg { transform: translateX(3px); }
 
-  /* ── NAVIGATIE ── */
-  .nav {
-    background: var(--donker);
-    padding: 0 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.06);
-  }
-  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
-  .nav-logo img { height: 34px; width: auto; }
-  .nav-links { display: flex; align-items: center; gap: 2px; list-style: none; }
-  .nav-links a { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); text-decoration: none; padding: 6px 11px; border-radius: 6px; transition: all 0.15s ease; white-space: nowrap; }
-  .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.07); }
-  .nav-links a.actief { color: var(--goud); }
-  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
-  .nav-toggle span { display: block; width: 22px; height: 2px; background: rgba(255,255,255,0.8); border-radius: 2px; }
-  .nav-mobiel { display: none; flex-direction: column; background: var(--donker); padding: 12px 24px 20px; border-top: 1px solid rgba(255,255,255,0.08); }
-  .nav-mobiel a { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.75); text-decoration: none; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .nav-mobiel a:last-child { border-bottom: none; }
-  .nav-mobiel a.actief { color: var(--goud); }
-  .nav-mobiel.open { display: flex; }
-  @media (max-width: 860px) { .nav-links { display: none; } .nav-toggle { display: flex; } }
+/* SECTIE WRAPPER */
+.sectie { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
+.sectie-titel { font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; color: var(--tekst); margin-bottom: 12px; letter-spacing: -0.3px; }
+.sectie-sub { font-size: 16px; color: var(--tekst-zacht); line-height: 1.7; max-width: 600px; }
 
-  /* ── HERO ── */
-  .hero {
-    background: var(--donker);
-    padding: 72px 24px 80px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 20% 50%, rgba(212,168,102,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 50% 60% at 80% 30%, rgba(212,168,102,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .hero-label {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--goud);
-    border: 1px solid rgba(212,168,102,0.4);
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 24px;
-  }
-  .hero h1 {
-    font-size: clamp(28px, 5vw, 46px);
-    font-weight: 800;
-    color: var(--wit);
-    line-height: 1.2;
-    max-width: 680px;
-    margin: 0 auto 20px;
-    letter-spacing: -0.5px;
-  }
-  .hero h1 span {
-    color: var(--goud);
-  }
-  .hero p {
-    font-size: 17px;
-    color: rgba(255,255,255,0.72);
-    max-width: 520px;
-    margin: 0 auto;
-    line-height: 1.7;
-  }
+/* HERKENNINGSBLOK */
+.herkenning { background: var(--wit); }
+.herkenning-inner { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
+.bullets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin: 24px 0 32px; }
+.bullet-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--tekst-zacht); line-height: 1.5; }
+.bullet-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--goud); flex-shrink: 0; margin-top: 8px; }
+.callout { border-left: 3px solid var(--goud); border-radius: 0; padding: 16px 20px; background: #f9f6f0; font-size: 15px; font-style: italic; color: var(--tekst-zacht); line-height: 1.6; max-width: 680px; }
+.callout strong { color: var(--donker); font-style: normal; }
 
-  /* ── TOOLS GRID ── */
-  .tools-sectie {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 72px 24px 80px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    align-items: stretch;
-  }
+/* TOOLCARDS */
+.toolcards-sectie { background: var(--achtergrond); }
+.toolcards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+.tool-kaart { background: var(--wit); border-radius: var(--radius-groot); overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 2px 12px rgba(0,58,64,0.07); transition: box-shadow 0.25s ease, transform 0.25s ease; }
+.tool-kaart:hover { box-shadow: 0 8px 32px rgba(0,58,64,0.13); transform: translateY(-3px); }
+.tool-kaart.featured { box-shadow: 0 2px 12px rgba(0,58,64,0.07), 0 0 0 2px var(--goud); }
+.tool-kaart.featured:hover { box-shadow: 0 8px 32px rgba(0,58,64,0.13), 0 0 0 2px var(--goud); }
+.kaart-top { background: var(--donker); padding: 32px 28px 28px; position: relative; overflow: hidden; min-height: 200px; display: flex; flex-direction: column; }
+.kaart-top::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 80% at 30% 70%, rgba(212,168,102,0.1) 0%, transparent 70%); pointer-events: none; }
+.featured-badge { position: absolute; top: 0; left: 50%; transform: translateX(-50%); background: var(--goud); color: var(--donker); font-size: 10px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px; border-radius: 0 0 8px 8px; white-space: nowrap; }
+.kaart-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--goud); margin-bottom: 14px; margin-top: 8px; }
+.kaart-badge-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--goud); flex-shrink: 0; }
+.kaart-top h3 { font-size: 20px; font-weight: 800; color: var(--wit); line-height: 1.2; margin-bottom: 10px; }
+.kaart-top p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; flex: 1; }
+.deco-letter { position: absolute; bottom: -12px; right: -6px; font-size: 100px; font-weight: 800; color: rgba(212,168,102,0.06); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -4px; }
+.kaart-body { padding: 24px 28px 28px; display: flex; flex-direction: column; flex: 1; }
+.kaart-voor-wie { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tekst-zacht); margin-bottom: 14px; line-height: 1.5; }
+.kaart-voor-wie span { color: var(--donker); }
+.sectie-kopje { font-size: 11px; font-weight: 700; color: var(--donker); letter-spacing: 0.5px; margin-bottom: 6px; margin-top: 12px; }
+.kaart-bullets { list-style: none; margin-bottom: 4px; }
+.kaart-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--tekst-zacht); line-height: 1.5; margin-bottom: 4px; }
+.kaart-bullets li::before { content: '→'; color: var(--goud); flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+.kaart-prijs { font-size: 14px; font-weight: 700; color: var(--tekst); margin: 16px 0 12px; }
+.prijs-badge { display: inline-block; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 100px; }
+.prijs-badge.gratis { background: #d1fae5; color: #065f46; }
+.prijs-badge.betaald { background: rgba(212,168,102,0.15); color: #7a5c1a; }
+.kaart-cta { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-size: 13px; font-weight: 700; text-decoration: none; cursor: pointer; border: none; width: 100%; text-align: center; transition: all 0.2s; margin-top: auto; font-family: inherit; }
+.kaart-cta.goud { background: var(--goud); color: var(--donker); }
+.kaart-cta.goud:hover { background: var(--goud-licht); }
+.kaart-cta.donker { background: var(--donker); color: var(--wit); }
+.kaart-cta.donker:hover { background: #004d57; }
+.kaart-cta.rand { background: transparent; color: var(--donker); border: 1.5px solid rgba(0,58,64,0.3); }
+.kaart-cta.rand:hover { background: rgba(0,58,64,0.04); }
 
-  .tool-kaart {
-    background: var(--wit);
-    border-radius: var(--radius-groot);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 2px 12px rgba(0,58,64,0.07), 0 1px 3px rgba(0,58,64,0.05);
-    transition: box-shadow 0.25s ease, transform 0.25s ease;
-  }
-  .tool-kaart:hover {
-    box-shadow: 0 8px 32px rgba(0,58,64,0.13), 0 2px 8px rgba(0,58,64,0.08);
-    transform: translateY(-3px);
-  }
+/* ASSESSMENT VERDIEPING */
+.verdieping-sectie { background: var(--wit); }
+.verdieping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+.tags-rij { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tag { display: inline-block; font-size: 12px; padding: 5px 12px; border-radius: 100px; background: var(--achtergrond); color: var(--tekst-zacht); border: 0.5px solid rgba(0,58,64,0.1); }
+.bewijs-blok { background: var(--achtergrond); border-radius: var(--radius); padding: 28px 32px; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+.bewijs-tekst h3 { font-size: 18px; font-weight: 800; color: var(--tekst); margin-bottom: 10px; }
+.bewijs-tekst p { font-size: 14px; color: var(--tekst-zacht); line-height: 1.7; }
+.bewijs-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
-  .kaart-visueel {
-    background: var(--donker);
-    padding: 40px 32px 36px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    overflow: hidden;
-    min-height: 260px;
-  }
-  .kaart-visueel::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 80% at 30% 70%, rgba(212,168,102,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-  .tool-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--goud);
-    margin-bottom: 20px;
-  }
-  .tool-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--goud);
-    flex-shrink: 0;
-  }
-  .kaart-visueel h2 {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--wit);
-    line-height: 1.2;
-    letter-spacing: -0.3px;
-    margin-bottom: 12px;
-  }
-  .kaart-visueel p {
-    font-size: 14px;
-    color: rgba(255,255,255,0.68);
-    line-height: 1.7;
-    flex: 1;
-  }
+/* QUICKSCAN FORMULIER */
+.quickscan-sectie { background: var(--donker); }
+.quickscan-inner { max-width: 1080px; margin: 0 auto; padding: 72px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.qs-tekst h2 { font-size: clamp(22px, 3vw, 32px); font-weight: 800; color: var(--wit); margin-bottom: 14px; letter-spacing: -0.3px; }
+.qs-tekst p { font-size: 15px; color: rgba(255,255,255,0.68); line-height: 1.7; margin-bottom: 8px; }
+.qs-features { list-style: none; margin-top: 20px; }
+.qs-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.qs-features li:last-child { border-bottom: none; }
+.qs-features li::before { content: '✓'; color: var(--goud); font-weight: 700; flex-shrink: 0; }
+.qs-form { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: var(--radius-groot); padding: 36px 32px; }
+.qs-form h3 { font-size: 18px; font-weight: 700; color: var(--wit); margin-bottom: 6px; }
+.qs-form p { font-size: 13px; color: rgba(255,255,255,0.55); margin-bottom: 24px; }
+.form-groep { margin-bottom: 16px; }
+.form-groep label { display: block; font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.6); margin-bottom: 6px; letter-spacing: 0.5px; }
+.form-groep input { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.08); color: var(--wit); font-size: 14px; font-family: inherit; transition: border-color 0.2s; outline: none; }
+.form-groep input::placeholder { color: rgba(255,255,255,0.35); }
+.form-groep input:focus { border-color: var(--goud); }
+.form-rij { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-disclaimer { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 12px; line-height: 1.5; }
+.form-success { display: none; text-align: center; padding: 20px; }
+.form-success h3 { color: var(--goud); margin-bottom: 8px; }
+.form-success p { color: rgba(255,255,255,0.7); font-size: 14px; }
 
-  /* grote decoratieve letters */
-  .visueel-deco {
-    position: absolute;
-    bottom: -16px;
-    right: -8px;
-    font-size: 120px;
-    font-weight: 800;
-    color: rgba(212,168,102,0.07);
-    line-height: 1;
-    pointer-events: none;
-    letter-spacing: -6px;
-    user-select: none;
-  }
+/* FAQ */
+.faq-sectie { background: var(--achtergrond); }
+.faq-lijst { margin-top: 40px; max-width: 720px; }
+.faq-item { border-bottom: 1px solid rgba(0,58,64,0.12); }
+.faq-vraag { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; cursor: pointer; font-size: 15px; font-weight: 700; color: var(--tekst); gap: 16px; }
+.faq-vraag:hover { color: var(--donker); }
+.faq-icon { width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.25s; color: var(--goud); }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-antwoord { font-size: 14px; color: var(--tekst-zacht); line-height: 1.7; max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.25s; }
+.faq-item.open .faq-antwoord { max-height: 200px; padding-bottom: 18px; }
 
-  .kaart-inhoud {
-    padding: 32px 32px 36px;
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-  }
-  .kaart-voor-wie {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--tekst-zacht);
-    margin-bottom: 16px;
-    line-height: 1.6;
-  }
-  .kaart-voor-wie span {
-    color: var(--donker);
-  }
+/* SLOT CTA */
+.slot-cta { background: var(--donker); padding: 80px 24px; text-align: center; }
+.slot-cta h2 { font-size: clamp(22px, 4vw, 34px); font-weight: 800; color: var(--wit); margin-bottom: 12px; letter-spacing: -0.3px; }
+.slot-cta p { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 480px; margin: 0 auto 32px; line-height: 1.7; }
 
-  .features-lijst {
-    list-style: none;
-    margin-bottom: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    flex: 1;
-  }
-  .features-lijst li {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--tekst);
-    line-height: 1.5;
-  }
-  .features-lijst li::before {
-    content: '';
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    background: rgba(0,58,64,0.08);
-    flex-shrink: 0;
-    margin-top: 1px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 18'%3E%3Cpath d='M4 9l3.5 3.5L14 5.5' stroke='%23003a40' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
-    background-size: 18px 18px;
-  }
-
-  .kaart-prijs-rij {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-  .prijs-label {
-    font-size: 13px;
-    color: var(--tekst-zacht);
-  }
-  .prijs-badge {
-    display: inline-block;
-    font-size: 13px;
-    font-weight: 700;
-    padding: 4px 12px;
-    border-radius: 100px;
-  }
-  .prijs-badge.gratis { background: #d1fae5; color: #065f46; }
-  .prijs-badge.betaald { background: rgba(212,168,102,0.15); color: #7a5c1a; }
-
-  .kaart-cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 20px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: none;
-    width: 100%;
-    text-align: center;
-  }
-  .kaart-cta.primair {
-    background: var(--donker);
-    color: var(--wit);
-  }
-  .kaart-cta.primair:hover {
-    background: #004d57;
-  }
-  .kaart-cta.goud {
-    background: var(--goud);
-    color: var(--donker);
-  }
-  .kaart-cta.goud:hover {
-    background: var(--goud-licht);
-  }
-  .kaart-cta svg {
-    transition: transform 0.2s ease;
-    flex-shrink: 0;
-  }
-  .kaart-cta:hover svg {
-    transform: translateX(3px);
-  }
-
-  /* ── AFSLUITER ── */
-  .afsluiter {
-    background: var(--donker);
-    padding: 64px 24px;
-    text-align: center;
-  }
-  .afsluiter h2 {
-    font-size: clamp(22px, 4vw, 34px);
-    font-weight: 800;
-    color: var(--wit);
-    margin-bottom: 14px;
-    letter-spacing: -0.3px;
-  }
-  .afsluiter p {
-    font-size: 16px;
-    color: rgba(255,255,255,0.65);
-    max-width: 480px;
-    margin: 0 auto 32px;
-  }
-  .afsluiter a, .afsluiter-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 14px 28px;
-    border-radius: 8px;
-    font-size: 15px;
-    font-weight: 700;
-    font-family: 'Nunito Sans', sans-serif;
-    background: transparent;
-    border: 1.5px solid rgba(212,168,102,0.5);
-    color: var(--goud);
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-  }
-  .afsluiter a:hover, .afsluiter-btn:hover {
-    background: rgba(212,168,102,0.08);
-    border-color: var(--goud);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .tools-sectie {
-      grid-template-columns: 1fr;
-      max-width: 520px;
-    }
-  }
-  @media (max-width: 480px) {
-    .kaart-visueel {
-      padding: 32px 24px 28px;
-      min-height: 220px;
-    }
-    .kaart-inhoud {
-      padding: 28px 24px 32px;
-    }
-  }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .toolcards-grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .verdieping-grid { grid-template-columns: 1fr; }
+  .bewijs-blok { grid-template-columns: 1fr; }
+  .quickscan-inner { grid-template-columns: 1fr; gap: 40px; }
+  .bullets-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .form-rij { grid-template-columns: 1fr; }
+  .qs-form { padding: 28px 20px; }
+}
 </style>
 </head>
 <body>
+
 <!-- NAVIGATIE -->
 <header>
   <nav class="nav">
@@ -371,13 +182,13 @@
       <li><a href="https://www.s-pace.nl">Home</a></li>
       <li><a href="https://tools.s-pace.nl" class="actief">Tools</a></li>
       <li><a href="https://www.s-pace.nl/diensten">Diensten</a></li>
-      <li><a href="https://www.s-pace.nl/feedback-tool">Feedback Tool</a></li>
+      <li><a href="https://feedback.s-pace.nl">Feedback Tool</a></li>
       <li><a href="https://www.s-pace.nl/over-pace">Over Pace</a></li>
       <li><a href="https://www.s-pace.nl/werkwijze">Werkwijze</a></li>
       <li><a href="https://www.s-pace.nl/blog">Blog</a></li>
       <li><a href="https://www.s-pace.nl/contact">Contact</a></li>
     </ul>
-    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+    <button class="nav-toggle" onclick="document.querySelector('.nav-mobiel').classList.toggle('open')" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
@@ -385,7 +196,7 @@
     <a href="https://www.s-pace.nl">Home</a>
     <a href="https://tools.s-pace.nl" class="actief">Tools</a>
     <a href="https://www.s-pace.nl/diensten">Diensten</a>
-    <a href="https://www.s-pace.nl/feedback-tool">Feedback Tool</a>
+    <a href="https://feedback.s-pace.nl">Feedback Tool</a>
     <a href="https://www.s-pace.nl/over-pace">Over Pace</a>
     <a href="https://www.s-pace.nl/werkwijze">Werkwijze</a>
     <a href="https://www.s-pace.nl/blog">Blog</a>
@@ -393,112 +204,300 @@
   </nav>
 </header>
 
-
 <!-- HERO -->
 <section class="hero">
   <div class="hero-label">Pace Synergy Tools</div>
   <h1>Inzicht dat leidt tot <span>betere samenwerking</span></h1>
-  <p>Drie tools om teamdynamiek te doorgronden — van een snelle signalering tot een volledige systemische analyse en begeleide feedbackgesprekken.</p>
+  <p class="hero-sub">Van een snelle eerste indicatie tot een verdiepend teamrapport met patronen, risico's en ontwikkelrichting.</p>
+  <p class="hero-sub2">Voor teams die willen zien waar samenwerking schuurt en welke stap helpt om gesprekken, besluiten en eigenaarschap te versterken.</p>
+  <div class="cta-rij">
+    <a class="btn-goud" href="https://scan.s-pace.nl/#quickscan">Start de Quickscan <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="btn-outline-wit" href="https://scan.s-pace.nl">Bekijk de Synergy Assessment <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
 </section>
 
-<!-- TOOLS -->
-<section class="tools-sectie">
-
-  <!-- TOOL 1: Synergy Quickscan -->
-  <article class="tool-kaart">
-    <div class="kaart-visueel">
-      <div class="tool-badge"><span class="tool-badge-dot"></span>Gratis starten</div>
-      <h2>Synergy Quickscan</h2>
-      <p>Een eerste indicatie van wat er speelt in jouw team — in minder dan 5 minuten.</p>
-      <div class="visueel-deco">QS</div>
+<!-- HERKENNINGSBLOK -->
+<section class="herkenning">
+  <div class="herkenning-inner">
+    <h2 class="sectie-titel">Sterke teams ontstaan niet alleen door talent</h2>
+    <p class="sectie-sub">Effectieve teams spreken zich uit, nemen eigenaarschap, communiceren helder en blijven constructief onder druk. Wanneer samenwerking onder druk staat, keren vaak dezelfde patronen terug:</p>
+    <div class="bullets-grid">
+      <div class="bullet-item">verantwoordelijkheden blijven onduidelijk</div>
+      <div class="bullet-item">samenwerking kost onnodig energie en werkplezier</div>
+      <div class="bullet-item">mensen praten over elkaar in plaats van met elkaar</div>
+      <div class="bullet-item">feedback leidt niet tot ander gedrag</div>
+      <div class="bullet-item">besluiten blijven liggen of duren langer dan nodig</div>
+      <div class="bullet-item">overleg kost veel tijd maar geeft weinig richting</div>
     </div>
-    <div class="kaart-inhoud">
-      <div class="kaart-voor-wie">Voor wie · <span>Teamleiders, managers en HR-professionals</span></div>
-      <ul class="features-lijst">
-        <li>10 stellingen, direct resultaat</li>
-        <li>Signaleert patronen in teamdynamiek</li>
-        <li>Rapport met concrete eerste stap</li>
-        <li>Tweetalig: Nederlands en Engels</li>
-        <li>Ideale voorbereiding op het volledige assessment</li>
-      </ul>
-      <div class="kaart-prijs-rij">
-        <span class="prijs-label">Investering:</span>
-        <span class="prijs-badge gratis">Gratis</span>
+    <div class="callout">
+      <strong>Wat kost het jullie maandelijks</strong> als conflicten onuitgesproken blijven, besluiten niet landen of goede mensen afhaken?
+    </div>
+    <p style="font-size:15px; color:var(--tekst-zacht); margin-top:24px; line-height:1.7;">Daarom begint sterker samenwerken met helder zicht op wat er speelt. Niet met nog een overleg, maar met het juiste vertrekpunt.</p>
+  </div>
+</section>
+
+<!-- TOOLCARDS -->
+<section class="toolcards-sectie">
+  <div class="sectie">
+    <h2 class="sectie-titel">Kies de stap die past bij je vraag</h2>
+    <div class="toolcards-grid">
+
+      <!-- Quickscan -->
+      <div class="tool-kaart">
+        <div class="kaart-top">
+          <div class="kaart-badge"><span class="kaart-badge-dot"></span>Gratis starten</div>
+          <h3>Synergy Quickscan</h3>
+          <p>Snel een eerste beeld van de teamdynamiek — in minder dan 5 minuten.</p>
+          <div class="deco-letter">QS</div>
+        </div>
+        <div class="kaart-body">
+          <div class="kaart-voor-wie">Voor wie · <span>Teamleiders, managers en HR-professionals</span></div>
+          <div class="sectie-kopje">Past bij vragen als</div>
+          <ul class="kaart-bullets">
+            <li>Waar schuurt samenwerking mogelijk?</li>
+            <li>Welke thema's vragen aandacht?</li>
+            <li>Is verdieping met het team zinvol?</li>
+          </ul>
+          <div class="sectie-kopje">Wat je krijgt</div>
+          <ul class="kaart-bullets">
+            <li>10 stellingen, direct resultaat</li>
+            <li>Eerste ontwikkelrichting</li>
+            <li>Tweetalig: NL en EN</li>
+          </ul>
+          <div class="kaart-prijs"><span class="prijs-badge gratis">Gratis</span></div>
+          <a class="kaart-cta goud" href="https://scan.s-pace.nl/#quickscan">Start de Quickscan <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
       </div>
-      <a class="kaart-cta goud" href="https://scan.s-pace.nl/#quickscan">
+
+      <!-- Assessment (featured) -->
+      <div class="tool-kaart featured">
+        <div class="kaart-top">
+          <div class="featured-badge">Hoofdproduct</div>
+          <div class="kaart-badge" style="margin-top:20px;"><span class="kaart-badge-dot"></span>Verdiepend teamrapport</div>
+          <h3>Synergy Assessment</h3>
+          <p>Verdiepend inzicht in communicatie, leiderschap en teamdynamiek op basis van 50 stellingen over 10 domeinen.</p>
+          <div class="deco-letter">SA</div>
+        </div>
+        <div class="kaart-body">
+          <div class="kaart-voor-wie">Voor wie · <span>Managementteams, scale-ups en organisaties</span></div>
+          <div class="sectie-kopje">Past bij vragen als</div>
+          <ul class="kaart-bullets">
+            <li>Welke patronen keren terug in onze samenwerking?</li>
+            <li>Waar zitten risico's in besluitvorming of eigenaarschap?</li>
+            <li>Welke ontwikkeling heeft nu het meeste effect?</li>
+          </ul>
+          <div class="sectie-kopje">Wat je krijgt</div>
+          <ul class="kaart-bullets">
+            <li>50 stellingen over 10 domeinen</li>
+            <li>Verdiepend teamrapport op maat</li>
+            <li>Patronen, risico's en ontwikkelrichting</li>
+            <li>Persoonlijke toelichting inbegrepen</li>
+          </ul>
+          <div class="kaart-prijs">Vanaf <span class="prijs-badge betaald">€1.299 excl. btw</span></div>
+          <a class="kaart-cta donker" href="https://scan.s-pace.nl">Bekijk de Assessment-pakketten <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- Feedback Tool -->
+      <div class="tool-kaart">
+        <div class="kaart-top">
+          <div class="kaart-badge"><span class="kaart-badge-dot"></span>Direct bruikbaar</div>
+          <h3>Feedback Tool</h3>
+          <p>Eén lastig gesprek zorgvuldig voorbereiden — zonder te verzachten, vermijden of escaleren.</p>
+          <div class="deco-letter">FT</div>
+        </div>
+        <div class="kaart-body">
+          <div class="kaart-voor-wie">Voor wie · <span>Iedereen die een moeilijk gesprek wil voeren</span></div>
+          <div class="sectie-kopje">Past bij vragen als</div>
+          <ul class="kaart-bullets">
+            <li>Hoe zeg ik dit concreet en zorgvuldig?</li>
+            <li>Hoe voorkom ik dat ik te hard of te vaag word?</li>
+            <li>Wat wil ik eigenlijk anders zien?</li>
+          </ul>
+          <div class="sectie-kopje">Wat je krijgt</div>
+          <ul class="kaart-bullets">
+            <li>5 gerichte vragen, direct feedbackvoorstel</li>
+            <li>Opgebouwd via Gedrag → Effect → Verlangen</li>
+            <li>Reflectie op emotie, aannames en behoefte</li>
+          </ul>
+          <div class="kaart-prijs"><span class="prijs-badge gratis">Gratis</span></div>
+          <a class="kaart-cta rand" href="https://feedback.s-pace.nl">Open de Feedback Tool <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT VERDIEPING -->
+<section class="verdieping-sectie">
+  <div class="sectie">
+    <h2 class="sectie-titel">Meer dan een vragenlijst</h2>
+    <p class="sectie-sub">De Synergy Assessment kijkt naar samenwerking als geheel — niet naar losse meningen of individuele profielen.</p>
+    <div class="verdieping-grid">
+      <div>
+        <h3 style="font-size:16px; font-weight:700; color:var(--tekst); margin-bottom:12px;">Wat de Assessment onderzoekt</h3>
+        <p style="font-size:14px; color:var(--tekst-zacht); line-height:1.7; margin-bottom:14px;">De analyse maakt zichtbaar hoe verschillende domeinen elkaar beïnvloeden:</p>
+        <div class="tags-rij">
+          <span class="tag">psychologische veiligheid</span>
+          <span class="tag">communicatie onder spanning</span>
+          <span class="tag">besluitvorming & opvolging</span>
+          <span class="tag">eigenaarschap</span>
+          <span class="tag">leiderschap</span>
+          <span class="tag">werkdruk & energie</span>
+          <span class="tag">rollen & afstemming</span>
+          <span class="tag">leren & verbeteren</span>
+          <span class="tag">transparantie</span>
+          <span class="tag">terugkerende teamdynamiek</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:16px; font-weight:700; color:var(--tekst); margin-bottom:12px;">Wanneer is dit waardevol?</h3>
+        <ul class="kaart-bullets" style="gap:8px; display:flex; flex-direction:column;">
+          <li style="font-size:14px;">besluiten traag gaan of steeds opnieuw worden besproken</li>
+          <li style="font-size:14px;">spanning voelbaar is, maar weinig wordt uitgesproken</li>
+          <li style="font-size:14px;">rollen of verwachtingen niet helder genoeg zijn</li>
+          <li style="font-size:14px;">feedback niet leidt tot ander gedrag</li>
+          <li style="font-size:14px;">het team wil groeien naar meer eigenaarschap en vertrouwen</li>
+        </ul>
+      </div>
+    </div>
+    <div class="bewijs-blok">
+      <div class="bewijs-tekst">
+        <h3>Ontwikkeld vanuit de praktijk van samenwerking</h3>
+        <p>De Assessment combineert inzichten uit mediation, teamdynamiek, communicatie en organisatieontwikkeling. Niet om mensen te beoordelen, maar om zichtbaar te maken welke patronen samenwerking versterken of belasten.</p>
+      </div>
+      <div>
+        <div class="bewijs-tags">
+          <span class="tag">mediation</span>
+          <span class="tag">teamdynamiek</span>
+          <span class="tag">communicatie</span>
+          <span class="tag">organisatieontwikkeling</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICKSCAN AANVRAAG -->
+<section class="quickscan-sectie" id="quickscan">
+  <div class="quickscan-inner">
+    <div class="qs-tekst">
+      <h2>Start met de Synergy Quickscan</h2>
+      <p>Ontvang in minder dan 5 minuten een eerste indicatie van waar samenwerking krachtig is en waar spanning, voorzichtigheid of onduidelijkheid ontstaat.</p>
+      <ul class="qs-features">
+        <li>10 stellingen, direct resultaat</li>
+        <li>Eerste ontwikkelrichting per thema</li>
+        <li>Gratis en vrijblijvend</li>
+        <li>Rapport direct in je mailbox</li>
+        <li>Tweetalig: Nederlands en Engels</li>
+      </ul>
+    </div>
+    <div class="qs-form" id="qs-form-wrapper">
+      <h3>Ontvang de Quickscan</h3>
+      <p>Vul je gegevens in en start direct.</p>
+      <div class="form-rij">
+        <div class="form-groep">
+          <label>Voornaam</label>
+          <input type="text" id="qs-voornaam" placeholder="Jan">
+        </div>
+        <div class="form-groep">
+          <label>Achternaam</label>
+          <input type="text" id="qs-achternaam" placeholder="de Vries">
+        </div>
+      </div>
+      <div class="form-groep">
+        <label>E-mailadres</label>
+        <input type="email" id="qs-email" placeholder="jan@bedrijf.nl">
+      </div>
+      <div class="form-groep">
+        <label>Organisatie</label>
+        <input type="text" id="qs-organisatie" placeholder="Bedrijfsnaam">
+      </div>
+      <button class="btn-goud" style="width:100%; justify-content:center; margin-top:8px;" onclick="submitQuickscan()">
         Start de Quickscan
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
+      </button>
+      <p class="form-disclaimer">Door te starten ga je akkoord met onze <a href="https://www.s-pace.nl/_files/ugd/39909a_ac40107e8f3942bc9c4d1947ecebfa7d.pdf" style="color:rgba(255,255,255,0.5);">algemene voorwaarden</a>.</p>
     </div>
-  </article>
-
-  <!-- TOOL 2: Synergy Assessment -->
-  <article class="tool-kaart">
-    <div class="kaart-visueel">
-      <div class="tool-badge"><span class="tool-badge-dot"></span>Volledig teamrapport</div>
-      <h2>Synergy Assessment</h2>
-      <p>Systemische analyse van teamdynamiek — gedrag, patronen en concrete ontwikkelkansen.</p>
-      <div class="visueel-deco">SA</div>
+    <div class="form-success" id="qs-success">
+      <h3>Gelukt!</h3>
+      <p>Je ontvangt de Quickscan link zo dadelijk in je mailbox.</p>
     </div>
-    <div class="kaart-inhoud">
-      <div class="kaart-voor-wie">Voor wie · <span>Managementteams, directieteams en scale-ups</span></div>
-      <ul class="features-lijst">
-        <li>61 stellingen over 10 domeinen</li>
-        <li>AI-gegenereerd teamrapport op maat</li>
-        <li>Patronen, risico's en ontwikkelkansen</li>
-        <li>Persoonlijke toelichting inbegrepen</li>
-        <li>Pakketten voor 2 tot 25+ personen</li>
-      </ul>
-      <div class="kaart-prijs-rij">
-        <span class="prijs-label">Vanaf:</span>
-        <span class="prijs-badge betaald">€ 1.299 excl. btw</span>
-      </div>
-      <a class="kaart-cta primair" href="https://scan.s-pace.nl/">
-        Bekijk het assessment
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </article>
-
-  <!-- TOOL 3: Feedback Tool -->
-  <article class="tool-kaart">
-    <div class="kaart-visueel">
-      <div class="tool-badge"><span class="tool-badge-dot"></span>Direct bruikbaar</div>
-      <h2>Feedback Tool</h2>
-      <p>Formuleer een feedbackgesprek dat écht iets verandert — met AI en de GEV-methode van Pace Synergy.</p>
-      <div class="visueel-deco">FT</div>
-    </div>
-    <div class="kaart-inhoud">
-      <div class="kaart-voor-wie">Voor wie · <span>Iedereen die een moeilijk gesprek wil voeren</span></div>
-      <ul class="features-lijst">
-        <li>Vijf vragen, één concreet feedbackvoorstel</li>
-        <li>Opgebouwd via Gedrag → Effect → Verlangen</li>
-        <li>Analyse van eigen emoties en aannames</li>
-        <li>Voorbereiding op het gesprek inclusief</li>
-        <li>Tweetalig: Nederlands en Engels</li>
-      </ul>
-      <div class="kaart-prijs-rij">
-        <span class="prijs-label">Investering:</span>
-        <span class="prijs-badge gratis">Gratis</span>
-      </div>
-      <a class="kaart-cta primair" href="https://feedback.s-pace.nl/">
-        Open de Feedback Tool
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-    </div>
-  </article>
-
+  </div>
 </section>
 
-<!-- AFSLUITER -->
-<section class="afsluiter">
-  <h2>Meer weten over begeleiding?</h2>
-  <p>Pace Synergy begeleidt teams om patronen te doorgronden en om te zetten in concreet gedrag en betere samenwerking.</p>
-  <a class="afsluiter-btn" href="https://s-pace.nl/diensten">
-    Bekijk alle diensten
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
+<!-- FAQ -->
+<section class="faq-sectie">
+  <div class="sectie">
+    <h2 class="sectie-titel">Veelgestelde vragen</h2>
+    <div class="faq-lijst">
+      <div class="faq-item">
+        <div class="faq-vraag" onclick="toggleFaq(this)">
+          Is de Synergy Assessment een persoonlijkheidstest?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="faq-antwoord">Nee. De focus ligt niet op individuele profielen, maar op samenwerking, gedrag en teamdynamiek. Resultaten worden op teamniveau gedeeld, niet per persoon.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-vraag" onclick="toggleFaq(this)">
+          Is dit hetzelfde als een medewerkerstevredenheidsonderzoek?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="faq-antwoord">Nee. De Assessment kijkt specifieker naar hoe mensen communiceren, besluiten nemen, eigenaarschap tonen en onder druk samenwerken — niet naar algemene tevredenheid.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-vraag" onclick="toggleFaq(this)">
+          Zijn antwoorden vertrouwelijk?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="faq-antwoord">Ja. Individuele antwoorden zijn niet zichtbaar voor anderen. Resultaten worden uitsluitend op teamniveau gedeeld.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-vraag" onclick="toggleFaq(this)">
+          Hoe lang duurt het invullen?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="faq-antwoord">De Quickscan duurt minder dan 5 minuten. De Synergy Assessment duurt gemiddeld 15–20 minuten per deelnemer.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-vraag" onclick="toggleFaq(this)">
+          Wat ontvangt het team na afronding?
+          <svg class="faq-icon" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M4 10h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="faq-antwoord">Een verdiepend teamrapport met scores per domein, patronen, risico's en ontwikkelrichting. De uitkomsten worden toegelicht in een persoonlijke analysebespreking.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- SLOT CTA -->
+<section class="slot-cta">
+  <h2>Begin met zien wat er speelt</h2>
+  <p>Wil je snel een eerste signaal? Start met de Quickscan. Wil je verdiepend inzicht? Kies de Synergy Assessment.</p>
+  <div class="cta-rij">
+    <a class="btn-goud" href="https://scan.s-pace.nl/#quickscan">Start de Quickscan <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="btn-outline-wit" href="https://scan.s-pace.nl">Bekijk de Synergy Assessment <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    <a class="btn-outline-wit" href="https://feedback.s-pace.nl">Open de Feedback Tool <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</section>
+
+<script>
+const toggleFaq = (el) => {
+  const item = el.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+};
+
+const submitQuickscan = () => {
+  const voornaam = document.getElementById('qs-voornaam').value.trim();
+  const email = document.getElementById('qs-email').value.trim();
+  if (!voornaam || !email) { alert('Vul minimaal je voornaam en e-mailadres in.'); return; }
+  document.getElementById('qs-form-wrapper').style.display = 'none';
+  document.getElementById('qs-success').style.display = 'block';
+  window.location.href = 'https://scan.s-pace.nl/?naam=' + encodeURIComponent(voornaam) + '&email=' + encodeURIComponent(email);
+};
+</script>
 </body>
 </html>
