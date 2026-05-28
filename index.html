@@ -59,17 +59,17 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 .btn-goud:hover svg, .btn-donker:hover svg, .btn-outline-donker:hover svg { transform: translateX(3px); }
 
 /* SECTIE WRAPPER */
-.sectie { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
+.sectie { max-width: 1080px; margin: 0 auto; padding: 72px 24px; text-align: center; }
 .sectie-titel { font-size: clamp(22px, 3.5vw, 32px); font-weight: 800; color: var(--tekst); margin-bottom: 12px; letter-spacing: -0.3px; }
-.sectie-sub { font-size: 16px; color: var(--tekst-zacht); line-height: 1.7; max-width: 600px; }
+.sectie-sub { font-size: 16px; color: var(--tekst-zacht); line-height: 1.7; max-width: 600px; margin-left: auto; margin-right: auto; }
 
 /* HERKENNINGSBLOK */
 .herkenning { background: var(--wit); }
-.herkenning-inner { max-width: 1080px; margin: 0 auto; padding: 72px 24px; }
-.bullets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin: 24px 0 32px; }
+.herkenning-inner { max-width: 1080px; margin: 0 auto; padding: 72px 24px; text-align: center; }
+.bullets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin: 24px auto 32px; max-width: 800px; text-align: left; }
 .bullet-item { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--tekst-zacht); line-height: 1.5; }
 .bullet-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--goud); flex-shrink: 0; margin-top: 8px; }
-.callout { border-left: 3px solid var(--goud); border-radius: 0; padding: 20px 24px; background: #f9f6f0; font-size: 18px; font-style: italic; color: var(--tekst-zacht); line-height: 1.6; max-width: 780px; }
+.callout { border-left: 3px solid var(--goud); border-radius: 0; padding: 20px 24px; background: #f9f6f0; font-size: 18px; font-style: italic; color: var(--tekst-zacht); line-height: 1.6; max-width: 780px; margin: 0 auto; text-align: left; }
 .callout strong { color: var(--donker); font-style: normal; font-size: 19px; }
 
 /* TOOLCARDS */
@@ -88,10 +88,10 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 .kaart-top p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.6; flex: 1; }
 .deco-letter { position: absolute; bottom: -12px; right: -6px; font-size: 100px; font-weight: 800; color: rgba(212,168,102,0.06); line-height: 1; pointer-events: none; user-select: none; letter-spacing: -4px; }
 .kaart-body { padding: 24px 28px 28px; display: flex; flex-direction: column; flex: 1; }
-.kaart-voor-wie { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tekst-zacht); margin-bottom: 14px; line-height: 1.5; }
+.kaart-voor-wie { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--tekst-zacht); margin-bottom: 14px; line-height: 1.5; text-align: left; }
 .kaart-voor-wie span { color: var(--donker); }
-.sectie-kopje { font-size: 11px; font-weight: 700; color: var(--donker); letter-spacing: 0.5px; margin-bottom: 6px; margin-top: 12px; }
-.kaart-bullets { list-style: none; margin-bottom: 4px; }
+.sectie-kopje { font-size: 11px; font-weight: 700; color: var(--donker); letter-spacing: 0.5px; margin-bottom: 6px; margin-top: 12px; text-align: left; }
+.kaart-bullets { list-style: none; margin-bottom: 4px; text-align: left; }
 .kaart-bullets li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--tekst-zacht); line-height: 1.5; margin-bottom: 4px; }
 .kaart-bullets li::before { content: '→'; color: var(--goud); flex-shrink: 0; font-size: 12px; margin-top: 1px; }
 .kaart-prijs { font-size: 14px; font-weight: 700; color: var(--tekst); margin: 16px 0 12px; }
@@ -228,9 +228,10 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
       <div class="bullet-item">feedback leidt niet tot ander gedrag</div>
       <div class="bullet-item">besluiten blijven liggen of duren langer dan nodig</div>
       <div class="bullet-item">overleg kost veel tijd maar geeft weinig richting</div>
+      <div class="bullet-item">risico's worden niet benoemd of niet tijdig geadresseerd</div>
     </div>
     <div class="callout">
-      <strong>Wat kost het jullie maandelijks</strong> als conflicten onuitgesproken blijven, besluiten niet landen of goede mensen afhaken?
+      Wat blijft er liggen wanneer een team niet het gesprek voert dat nodig is: aan potentieel, besluitkracht, eigenaarschap en resultaat? <a href="https://www.s-pace.nl/post/slechte-samenwerking-kost-je-organisatie-geld" style="color:var(--donker); font-weight:700; text-decoration:underline;" target="_blank">Lees wat slechte samenwerking een organisatie kost →</a>
     </div>
     <p style="font-size:15px; color:var(--tekst-zacht); margin-top:24px; line-height:1.7;">Daarom begint sterker samenwerken met helder zicht op wat er speelt. Niet met nog een overleg, maar met het juiste vertrekpunt.</p>
   </div>
@@ -262,7 +263,6 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
           <ul class="kaart-bullets">
             <li>10 stellingen, direct resultaat</li>
             <li>Eerste ontwikkelrichting</li>
-            <li>Tweetalig: NL en EN</li>
           </ul>
           <div class="kaart-prijs"><span class="prijs-badge gratis">Gratis</span></div>
           <a class="kaart-cta goud" href="#quickscan">Start de Quickscan <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -286,12 +286,11 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
             <li>Waar zitten risico's in besluitvorming of eigenaarschap?</li>
             <li>Welke ontwikkeling heeft nu het meeste effect?</li>
           </ul>
-          <div class="sectie-kopje">Wat je krijgt</div>
+          <div class="sectie-kopje">Wat dit oplevert</div>
           <ul class="kaart-bullets">
-            <li>50 stellingen over 10 domeinen</li>
-            <li>Verdiepend teamrapport op maat</li>
-            <li>Patronen, risico's en ontwikkelrichting</li>
-            <li>Persoonlijke toelichting inbegrepen</li>
+            <li>Meet de kwaliteit van samenwerking objectief</li>
+            <li>Laat zien waar ruimte ligt voor een high performing team</li>
+            <li>Patronen, risico's en concrete ontwikkelrichting</li>
           </ul>
           <div class="kaart-prijs">Vanaf <span class="prijs-badge betaald">€1.299 excl. btw</span></div>
           <a class="kaart-cta donker" href="https://scan.s-pace.nl">Bekijk de Assessment-pakketten <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
@@ -313,12 +312,6 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
             <li>Hoe zeg ik dit concreet en zorgvuldig?</li>
             <li>Hoe voorkom ik dat ik te hard of te vaag word?</li>
             <li>Wat wil ik eigenlijk anders zien?</li>
-          </ul>
-          <div class="sectie-kopje">Wat je krijgt</div>
-          <ul class="kaart-bullets">
-            <li>5 gerichte vragen, direct feedbackvoorstel</li>
-            <li>Opgebouwd via Gedrag → Effect → Verlangen</li>
-            <li>Reflectie op emotie, aannames en behoefte</li>
           </ul>
           <div class="kaart-prijs"><span class="prijs-badge gratis">Gratis</span></div>
           <a class="kaart-cta rand" href="https://feedback.s-pace.nl">Open de Feedback Tool <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
