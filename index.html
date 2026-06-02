@@ -72,6 +72,23 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 .callout { border-left: 3px solid var(--goud); border-radius: 0; padding: 20px 24px; background: #f9f6f0; font-size: 18px; font-style: italic; color: var(--tekst-zacht); line-height: 1.6; max-width: 780px; margin: 0 auto; text-align: left; }
 .callout strong { color: var(--donker); font-style: normal; font-size: 19px; }
 
+
+/* JOURNEY BALK */
+.journey-balk { padding: 32px 0 48px 0; text-align: center; }
+.journey-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--tekst-zacht); margin-bottom: 20px; }
+.journey-stappen { display: flex; align-items: flex-start; justify-content: space-between; gap: 0; max-width: 1080px; margin: 0 auto; }
+.journey-stap { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0 12px; cursor: pointer; text-decoration: none; transition: opacity 0.15s; }
+.journey-stap:hover { opacity: 0.8; }
+.journey-icoon { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; transition: transform 0.2s; }
+.journey-stap:hover .journey-icoon { transform: translateY(-2px); }
+.journey-icoon.goud { background: var(--goud); color: var(--donker); }
+.journey-icoon.grijs { background: rgba(0,58,64,0.08); color: var(--tekst-zacht); }
+.journey-stap-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: var(--goud); }
+.journey-stap-label.grijs { color: var(--tekst-zacht); }
+.journey-stap-tool { font-size: 14px; font-weight: 700; color: var(--tekst); }
+.journey-stap-sub { font-size: 12px; color: var(--tekst-zacht); line-height: 1.5; margin-top: 4px; }
+.journey-pijl { display: flex; align-items: center; padding-top: 24px; color: rgba(0,58,64,0.25); flex-shrink: 0; font-size: 16px; }
+
 /* TOOLCARDS */
 .toolcards-sectie { background: var(--achtergrond); }
 .toolcards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
@@ -108,10 +125,10 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 
 /* ASSESSMENT VERDIEPING */
 .verdieping-sectie { background: var(--wit); }
-.verdieping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; }
+.verdieping-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
 .tags-rij { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .tag { display: inline-block; font-size: 12px; padding: 5px 12px; border-radius: 100px; background: var(--achtergrond); color: var(--tekst-zacht); border: 0.5px solid rgba(0,58,64,0.1); }
-.bewijs-blok { background: var(--achtergrond); border-radius: var(--radius); padding: 28px 32px; margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+.bewijs-blok { background: var(--wit); border-radius: var(--radius); padding: 28px 32px; margin-top: 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; border: 1px solid rgba(0,58,64,0.1); border-left: 3px solid var(--goud); }
 .bewijs-tekst h3 { font-size: 18px; font-weight: 800; color: var(--tekst); margin-bottom: 10px; }
 .bewijs-tekst p { font-size: 14px; color: var(--tekst-zacht); line-height: 1.7; }
 .bewijs-tags { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -241,6 +258,42 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
 <section class="toolcards-sectie">
   <div class="sectie">
     <h2 class="sectie-titel">Kies de stap die past bij je vraag</h2>
+
+    <div class="journey-balk">
+      <div class="journey-stappen">
+        <a class="journey-stap" href="#quickscan">
+          <div class="journey-icoon goud">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+          </div>
+          <div class="journey-stap-label">Signaleren</div>
+          <div class="journey-stap-tool">Quickscan</div>
+          <div class="journey-stap-sub">De Quickscan geeft een eerste signaal van hoe de samenwerking binnen het team functioneert: wat sterk staat, waar samenwerking schuurt en waar verdieping zinvol is.</div>
+        </a>
+        <div class="journey-pijl">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <a class="journey-stap" href="https://scan.s-pace.nl">
+          <div class="journey-icoon goud">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 17h7M17 14v7"/></svg>
+          </div>
+          <div class="journey-stap-label">Begrijpen</div>
+          <div class="journey-stap-tool">Assessment</div>
+          <div class="journey-stap-sub">De Assessment brengt in kaart hoe patronen ontstaan en waar ontwikkeling het meeste effect heeft. Zo wordt zichtbaar wat het team sterk maakt en waar risico's zitten.</div>
+        </a>
+        <div class="journey-pijl">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <a class="journey-stap" href="https://www.s-pace.nl/contact">
+          <div class="journey-icoon grijs">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="journey-stap-label grijs">Veranderen</div>
+          <div class="journey-stap-tool">Pace Synergy</div>
+          <div class="journey-stap-sub">Pace begeleidt het groepsgesprek binnen teams, maakt zichtbaar wat er speelt en stuurt bij op communicatie, spanning en samenwerking.</div>
+        </a>
+      </div>
+    </div>
+
     <div class="toolcards-grid">
 
       <!-- Quickscan -->
@@ -328,7 +381,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
     <h2 class="sectie-titel">Meer dan een vragenlijst</h2>
     <p class="sectie-sub">De Synergy Assessment kijkt naar samenwerking als geheel — niet naar losse meningen of individuele profielen.</p>
     <div class="verdieping-grid">
-      <div>
+      <div style="background:var(--wit); border-radius:var(--radius-groot); padding:32px; border-top:3px solid var(--goud);">
         <h3 style="font-size:16px; font-weight:700; color:var(--tekst); margin-bottom:12px;">Wat de Assessment onderzoekt</h3>
         <p style="font-size:14px; color:var(--tekst-zacht); line-height:1.7; margin-bottom:14px;">De analyse maakt zichtbaar hoe verschillende domeinen elkaar beïnvloeden:</p>
         <div class="tags-rij">
@@ -344,7 +397,7 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
           <span class="tag">terugkerende teamdynamiek</span>
         </div>
       </div>
-      <div>
+      <div style="background:var(--wit); border-radius:var(--radius-groot); padding:32px; border-top:3px solid rgba(0,58,64,0.15);">
         <h3 style="font-size:16px; font-weight:700; color:var(--tekst); margin-bottom:12px;">Wanneer is dit waardevol?</h3>
         <ul class="kaart-bullets" style="gap:8px; display:flex; flex-direction:column;">
           <li style="font-size:14px;">besluiten traag gaan of steeds opnieuw worden besproken</li>
