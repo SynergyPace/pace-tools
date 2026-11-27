@@ -160,14 +160,15 @@ body { font-family: 'Nunito Sans', sans-serif; background: var(--achtergrond); c
         <span id="qs-knoptekst" data-t="knop">Start de Quickscan</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <p class="form-disclaimer" data-t="voorwaarden" data-html>Door te starten ga je akkoord met onze <a href="https://www.pacesynergy.nl/_files/ugd/39909a_ac40107e8f3942bc9c4d1947ecebfa7d.pdf">algemene voorwaarden</a> en onze <a href="https://www.pacesynergy.nl/privacy">privacyverklaring</a>.</p>
+      <p class="form-disclaimer" data-t="voorwaarden" data-html>Door te starten ga je akkoord met onze <a href="https://www.pacesynergy.nl/algemene-voorwaarden" target="_blank" rel="noopener">algemene voorwaarden</a> en onze <a href="https://www.pacesynergy.nl/algemene-voorwaarden" target="_blank" rel="noopener">privacyverklaring</a>.</p>
     </form>
   </div>
 </section>
 
 <script>
 const SITE = 'https://www.pacesynergy.nl';
-const VOORWAARDEN_PDF = SITE + '/_files/ugd/39909a_ac40107e8f3942bc9c4d1947ecebfa7d.pdf';
+// Vast adres (Wix-omleiding naar de actuele PDF, tweetalig); bij een nieuwe versie past alleen de omleiding.
+const VOORWAARDEN_PDF = SITE + '/algemene-voorwaarden';
 
 const T = {
   nl: {
@@ -183,7 +184,7 @@ const T = {
     labelVoornaam: 'Voornaam *', labelAchternaam: 'Achternaam', labelEmail: 'E-mailadres *', labelOrganisatie: 'Organisatie',
     phVoornaam: 'Jan', phAchternaam: 'de Vries', phEmail: 'jan@bedrijf.nl', phOrganisatie: 'Bedrijfsnaam',
     knop: 'Start de Quickscan', bezig: 'Even geduld…',
-    voorwaarden: 'Door te starten ga je akkoord met onze <a href="' + VOORWAARDEN_PDF + '">algemene voorwaarden</a> en onze <a href="' + SITE + '/privacy">privacyverklaring</a>.',
+    voorwaarden: 'Door te starten ga je akkoord met onze <a href="' + VOORWAARDEN_PDF + '" target="_blank" rel="noopener">algemene voorwaarden</a> en onze <a href="' + VOORWAARDEN_PDF + '" target="_blank" rel="noopener">privacyverklaring</a>.',
     fout: {
       gegevens: 'Vul je voornaam en een geldig e-mailadres in.',
       limiet: 'Je hebt al een Quickscan aangevraagd. Kijk in je mailbox, of probeer het over een uur opnieuw.',
@@ -203,7 +204,7 @@ const T = {
     labelVoornaam: 'First name *', labelAchternaam: 'Last name', labelEmail: 'Email address *', labelOrganisatie: 'Organisation',
     phVoornaam: 'Jane', phAchternaam: 'Smith', phEmail: 'jane@company.com', phOrganisatie: 'Company name',
     knop: 'Start the Quickscan', bezig: 'One moment…',
-    voorwaarden: 'By starting, you agree to our <a href="' + VOORWAARDEN_PDF + '">terms and conditions</a> and our <a href="' + SITE + '/en/privacy">privacy policy</a>.',
+    voorwaarden: 'By starting, you agree to our <a href="' + VOORWAARDEN_PDF + '" target="_blank" rel="noopener">terms and conditions</a> and our <a href="' + VOORWAARDEN_PDF + '" target="_blank" rel="noopener">privacy policy</a>.',
     fout: {
       gegevens: 'Please enter your first name and a valid email address.',
       limiet: 'You have already requested a Quickscan. Check your inbox, or try again in an hour.',
